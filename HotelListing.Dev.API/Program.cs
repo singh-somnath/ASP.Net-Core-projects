@@ -4,7 +4,7 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("ConnectionSytring");
+var connectionString = builder.Configuration.GetConnectionString("HotListingDBConnectionString");
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -18,6 +18,7 @@ builder.Services.AddDbContext<HotelListingDBContext>(
     {
         dbContextOptionsBuilder.UseSqlServer(connectionString);
     });
+/////////////////////////////////
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", options =>
@@ -42,6 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 //Added this middleware to log each request  
 app.UseSerilogRequestLogging();
+///////////////////////////////////////////
 
 app.UseHttpsRedirection();
 
