@@ -5,6 +5,7 @@ namespace HotelListing.Dev.API.Data
     public class Country
     {
         public int Id { get; set; }
+
         [MaxLength(199)]
         public string Name { get; set; }
         [MaxLength(4)]
