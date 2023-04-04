@@ -1,12 +1,9 @@
 ﻿namespace HotelListing.Dev.API.Model.Hotel
 {
-    public class GetHotelDto
+    public class GetHotelDto : BaseHotelDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Address { get; set; }
-        public double Rating { get; set; }
+       
       
     }
 }
