@@ -40,6 +40,10 @@ namespace HotelListing.Dev.API.Controllers
             {
                 return NotFound();
             }
+            else 
+            {
+                return NoContent();
+            }
 
             var countryDetailsDto = _mapper.Map<GetCountryDetailsDto>(country);
 

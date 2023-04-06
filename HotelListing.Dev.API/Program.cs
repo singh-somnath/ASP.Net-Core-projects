@@ -1,6 +1,7 @@
 using HotelListing.Dev.API.Configuration;
 using HotelListing.Dev.API.Contracts;
 using HotelListing.Dev.API.Data;
+using HotelListing.Dev.API.MiddleWare;
 using HotelListing.Dev.API.Repository;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -34,9 +35,11 @@ builder.Services.AddCors(options =>
 builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
-builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(ICountriesRepository), typeof(CountryRepository));
 builder.Services.AddScoped(typeof(IHotelRepository), typeof(HotelRepository));
+
+builder.Services.AddScoped<APIKeyMiddleware>();
 
 var app = builder.Build();
 
@@ -46,6 +49,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<APIKeyMiddleware>();
 
 app.UseSerilogRequestLogging();
 
