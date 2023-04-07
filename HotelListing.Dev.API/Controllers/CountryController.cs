@@ -40,14 +40,11 @@ namespace HotelListing.Dev.API.Controllers
             {
                 return NotFound();
             }
-            else 
-            {
-                return NoContent();
-            }
-
+            
             var countryDetailsDto = _mapper.Map<GetCountryDetailsDto>(country);
 
             return Ok(countryDetailsDto);
+
         }
         [HttpPost]
         public async Task<ActionResult<Country>> PostCountry(CreateCountryDto createCountry)
@@ -93,7 +90,7 @@ namespace HotelListing.Dev.API.Controllers
                     throw;
             }
 
-            return NoContent();
+            return Ok();
 
         }
 
