@@ -10,7 +10,7 @@ namespace DesignPattern
     {
         static void Main(string[] args)
         {
-            circularLinkedList();
+            doubleLinkedList();
 
         }
 
@@ -23,7 +23,6 @@ namespace DesignPattern
             Console.WriteLine("15% Trimmed Mean :" + meanMedianMode.calculateTrimmedMean(15));
             Console.WriteLine("Median :" + meanMedianMode.calculateMedian());
         }
-
         static void stackUsingLinkedList()
         {
             StackUsingLinkList stack = new StackUsingLinkList();
@@ -117,7 +116,6 @@ namespace DesignPattern
                 }
             } while (exit != true);
         }
-
         static void circularLinkedList()
         {
             CircularLinkedList circularLinkedList = new CircularLinkedList();
@@ -183,7 +181,75 @@ namespace DesignPattern
                 }
             } while (exit != true);
         }
+        static void doubleLinkedList()
+        {
+            DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
+            Boolean exit = false;
+            int option, switchOption;
+            do
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("For Double Linked List => Insertion: 1 | Deletion: 2 | Peek All Node From Head: 3 | Peek All Node From Head: 4 |IsEmpty: 5 | Exit: 0");
+                Console.Write("Enter you input :");
+                Console.ForegroundColor = ConsoleColor.White;
+                string optionSelected = Console.ReadLine();
 
+                if (int.TryParse(optionSelected, out option))
+                    switchOption = option;
+                else
+                    switchOption = -1;
+
+                switch (switchOption)
+                {
+                    case 1:
+                        Console.WriteLine("Enter your data:");
+                        string input = Console.ReadLine();
+                        if (input != null)
+                        {
+                            doubleLinkedList.Insertion(input);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Provide valid data.");
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter Key Data for Deletion:");
+                        string keyData = Console.ReadLine();
+                        Console.WriteLine("Enter key Position for Deletion:");
+                        string enteredKeyPosition = Console.ReadLine();
+                        int keyPosition;
+                        if (!int.TryParse(enteredKeyPosition, out keyPosition))
+                        {
+                            Console.WriteLine("Please proide valid position.");
+                            exit = true;
+                        }
+                        else
+                        {
+                            doubleLinkedList.Deletion(keyData, keyPosition);
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Peeked All Data from Head :");
+                        doubleLinkedList.PeekAllNodeFromHead();
+                        break;
+                    case 4:
+                        Console.WriteLine("Peeked All Data from Tail :");
+                        doubleLinkedList.PeekAllNodeFromTail();
+                        break;
+                    case 5:
+                        Console.WriteLine("State :");
+                        doubleLinkedList.IsEmpty();
+                        break;
+                    case 0:
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Select Valid Option.");
+                        break;
+                }
+            } while (exit != true);
+        }
 
 
     }

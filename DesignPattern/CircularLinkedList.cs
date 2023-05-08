@@ -32,7 +32,7 @@ namespace DesignPattern
         public void Insertion(string data)
         {
             CircularNode node = new CircularNode(data);
-            if (head == null)
+            if (this.head == null)
             {
                 this.head = node;
                 this.head.next = node;
