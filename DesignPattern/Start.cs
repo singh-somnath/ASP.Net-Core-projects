@@ -10,7 +10,7 @@ namespace DesignPattern
     {
         static void Main(string[] args)
         {
-            QueueUsingLinkedList();
+            circularLinkedList();
 
         }
 
@@ -117,5 +117,74 @@ namespace DesignPattern
                 }
             } while (exit != true);
         }
+
+        static void circularLinkedList()
+        {
+            CircularLinkedList circularLinkedList = new CircularLinkedList();
+            Boolean exit = false;
+            int option, switchOption;
+            do
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("For Circular Linked List => Insertion: 1 | Deletion: 2 | Peek All Node: 3 | IsEmpty: 4 | Exit: 0");
+                Console.Write("Enter you input :");
+                Console.ForegroundColor = ConsoleColor.White;
+                string optionSelected = Console.ReadLine();
+
+                if (int.TryParse(optionSelected, out option))
+                    switchOption = option;
+                else
+                    switchOption = -1;
+
+                switch (switchOption)
+                {
+                    case 1:
+                        Console.WriteLine("Enter your data:");
+                        string input = Console.ReadLine();
+                        if (input != null)
+                        {
+                            circularLinkedList.Insertion(input);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Provide valid data.");
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter Key Data for Deletion:");
+                        string keyData = Console.ReadLine();
+                        Console.WriteLine("Enter key Position for Deletion:");
+                        string enteredKeyPosition = Console.ReadLine();
+                        int keyPosition;
+                        if(!int.TryParse(enteredKeyPosition, out keyPosition))
+                        {
+                            Console.WriteLine("Please proide valid position.");
+                            exit = true;
+                        }
+                        else
+                        {
+                            circularLinkedList.Deletion(keyData, keyPosition);
+                        }                        
+                        break;
+                    case 3:
+                        Console.WriteLine("Peeked All Data :");
+                        circularLinkedList.PeekAllNode();
+                        break;
+                    case 4:
+                        Console.WriteLine("State :");
+                        circularLinkedList.IsEmpty();
+                        break;
+                    case 0:
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Select Valid Option.");
+                        break;
+                }
+            } while (exit != true);
+        }
+
+
+
     }
 }
