@@ -12,7 +12,6 @@ namespace DesignPattern
     {
         public string data;
         public CircularNode next;
-
         public CircularNode(string data)
         {
             this.data = data;
@@ -22,8 +21,6 @@ namespace DesignPattern
     {
         public CircularNode head;
         private int length;
-
-
         public CircularLinkedList()
         {
             this.head = null;
@@ -80,7 +77,6 @@ namespace DesignPattern
                 Console.WriteLine("");
             }
         }
-
         private void printConsoleMessage(string message, bool successMessage)
         {
             Console.ForegroundColor = successMessage ? ConsoleColor.Green : ConsoleColor.Red;
@@ -98,7 +94,6 @@ namespace DesignPattern
                 printConsoleMessage("Circuler Linked List is not empty.", true);
             }
         }
-
         public void Deletion(string keyData, int keyPosition)
         {
 
