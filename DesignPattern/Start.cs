@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,7 @@ namespace DesignPattern
     {
         static void Main(string[] args)
         {
-            doubleLinkedList();
-
+            usingSorting();
         }
 
         static void meanMedianMode()
@@ -41,7 +41,7 @@ namespace DesignPattern
                     case 1:
                         Console.WriteLine("Enter your data:");
                         string? input = Console.ReadLine();
-                        if(input != null)
+                        if (input != null)
                         {
                             stack.Push(input);
                         }
@@ -51,7 +51,7 @@ namespace DesignPattern
                         }
                         break;
                     case 2:
-                        Console.WriteLine("Popped Data :"+ stack.Pop());
+                        Console.WriteLine("Popped Data :" + stack.Pop());
                         break;
                     case 3:
                         Console.WriteLine("Peeked Data :" + stack.Peek());
@@ -66,7 +66,7 @@ namespace DesignPattern
                         Console.WriteLine("Select Valid Option.");
                         break;
                 }
-            } while (exit != true);          
+            } while (exit != true);
         }
         static void QueueUsingLinkedList()
         {
@@ -77,7 +77,7 @@ namespace DesignPattern
             {
                 Console.WriteLine("For Queue => EnQueue:1 | DeQueue:2 | Peek:3 | IsEmpty:4 | Exit:0");
                 Console.Write("Enter you input :");
-                string optionSelected = Console.ReadLine();             
+                string optionSelected = Console.ReadLine();
 
                 if (int.TryParse(optionSelected, out option))
                     switchOption = option;
@@ -154,7 +154,7 @@ namespace DesignPattern
                         Console.WriteLine("Enter key Position for Deletion:");
                         string enteredKeyPosition = Console.ReadLine();
                         int keyPosition;
-                        if(!int.TryParse(enteredKeyPosition, out keyPosition))
+                        if (!int.TryParse(enteredKeyPosition, out keyPosition))
                         {
                             Console.WriteLine("Please proide valid position.");
                             exit = true;
@@ -162,7 +162,7 @@ namespace DesignPattern
                         else
                         {
                             circularLinkedList.Deletion(keyData, keyPosition);
-                        }                        
+                        }
                         break;
                     case 3:
                         Console.WriteLine("Peeked All Data :");
@@ -251,6 +251,86 @@ namespace DesignPattern
             } while (exit != true);
         }
 
+        static void usingHashSet()
+        {
+            //"MyHashSet","add","add","contains","contains","add","contains","remove","contains"
+            //[[],[1],[2],[1],[3],[2],[2],[2],[2]]
+            MyHashSet hashSet = new MyHashSet();
 
+            hashSet.Add(9);
+            hashSet.Remove(19);
+            hashSet.Add(14);
+            hashSet.Remove(19);
+            hashSet.Remove(9);
+            hashSet.Add(0);
+            hashSet.Add(3);
+            hashSet.Add(4);
+            hashSet.Add(0);
+            hashSet.Remove(9);
+            //Console.WriteLine(hashSet.Contains(2));
+
+
+        }
+
+        static void usingSorting()
+        {
+            
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("*****************************************************************");
+            Console.WriteLine("                 Selection Sort");
+            Console.ForegroundColor = ConsoleColor.White;
+            int[] sel_num = new int[] { 7,98,3,6,99,32,5,28,1,49,12,56,62,39, 7, 98, 3, 6, 99, 32, 5, 28, 1, 49, 12, 56, 62, 39 };
+            Sorting selectionSort = new Sorting(sel_num);
+            selectionSort.PrintNumbers();
+            selectionSort.SelectionSort();
+            selectionSort.PrintNumbers();
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            Console.WriteLine("*****************************************************************");
+            Console.WriteLine("                 Insertion Sort");
+            Console.ForegroundColor = ConsoleColor.White;
+            int[] ins_num = new int[] { 7, 98, 3, 6, 99, 32, 5, 28, 1, 49, 12, 56, 62, 39 };
+            Sorting insertionSort = new Sorting(ins_num);
+            insertionSort.PrintNumbers();
+            insertionSort.InsertionSort();
+            insertionSort.PrintNumbers();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("*****************************************************************");
+            Console.WriteLine("                 Bubble Sort");
+            Console.ForegroundColor = ConsoleColor.White;
+            int[] bub_num = new int[] { 7, 98, 3, 6, 99, 32, 5, 28, 1, 49, 12, 56, 62, 39 };
+            Sorting bubbleSort = new Sorting(bub_num);
+            bubbleSort.PrintNumbers();
+            bubbleSort.BubbleSort();
+            bubbleSort.PrintNumbers();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("*****************************************************************");
+            Console.WriteLine("                 Quick Sort");
+            Console.ForegroundColor = ConsoleColor.White;
+            int[] quick_num = new int[] { 7, 98, 3, 6, 99, 32, 5, 28, 1, 49, 12, 56, 62, 39 };
+            Sorting quickSort = new Sorting(quick_num);
+            quickSort.PrintNumbers();
+            DateTime startTime = DateTime.Now;
+            quickSort.QuickSort(0 , quick_num.Length-1);
+            DateTime endTime = DateTime.Now;
+            Console.WriteLine("Total Time Taken :" + (endTime - startTime).Milliseconds + " Milliseconds");
+            quickSort.PrintNumbers();
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("*****************************************************************");
+            Console.WriteLine("                 Merge Sort");
+            Console.ForegroundColor = ConsoleColor.White;
+            int[] merge_num = new int[] { 19,21,9,5,8,17, 32, 5, 28, 1, 49, 12, 56, 62, 39 };
+            Sorting mergeSort = new Sorting(merge_num);
+            mergeSort.PrintNumbers();
+            DateTime startTimeMerge = DateTime.Now;
+            mergeSort.MergeSort(0, merge_num.Length - 1);
+            DateTime endTimeMerge = DateTime.Now;
+            Console.WriteLine("Total Time Taken :" + (endTimeMerge - startTimeMerge).Milliseconds + " Milliseconds");
+            mergeSort.PrintNumbers();
+        }
     }
 }
